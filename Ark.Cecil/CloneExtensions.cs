@@ -48,5 +48,22 @@ namespace Ark.Cecil {
             clone.GenericParameters.CloneFrom(methodRef.GenericParameters);
             return clone;
         }
+
+        public static TypeReference Clone(this TypeReference typeRef) {
+            if (typeRef == null) {
+                return null;
+            }
+
+            var declaringType = typeRef.DeclaringType.Clone();
+            return new TypeReference(typeRef.Namespace, typeRef.Name, typeRef.Module, typeRef.Scope) { DeclaringType = declaringType };
+        }
+
+        public static FieldReference Clone(this FieldReference fieldRef) {
+            if (fieldRef == null) {
+                return null;
+            }
+
+            return new FieldReference(fieldRef.Name, fieldRef.FieldType, fieldRef.DeclaringType);
+        }
     }
 }
