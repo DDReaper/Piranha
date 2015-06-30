@@ -33,10 +33,10 @@ namespace Ark.DotNet {
                 }
 
 
-				string culture = null;
-				var attrib = fileElement.Attribute ("Culture");
-				if (attrib != null && attrib.Value != "neutral") {
-					culture = attrib.Value;
+                string culture = null;
+                var attrib = fileElement.Attribute ("Culture");
+                if (attrib != null && attrib.Value != "neutral") {
+                    culture = attrib.Value;
                 }
 
                 var publicKeyTokenString = fileElement.Attribute("PublicKeyToken").Value;

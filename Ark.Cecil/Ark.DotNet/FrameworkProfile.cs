@@ -53,10 +53,14 @@ namespace Ark.DotNet {
         public static class Paths {
             public static string ReferenceAssembliesDirectory {
                 get {
-					if (Environment.OSVersion.Platform == PlatformID.Win32NT)
-                    	return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "Reference Assemblies", "Microsoft", "Framework");
-					else 
-						return Path.Combine("/Library/Frameworks/Mono.framework/Versions/Current/lib/mono", "xbuild-frameworks");
+                    if (Environment.OSVersion.Platform == PlatformID.Win32NT)
+                        return Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.ProgramFilesX86), "Reference Assemblies", "Microsoft", "Framework");
+                    else {
+                        if (Directory.Exists ("/Applications") && Directory.Exists ("/Library/Frameworks"))
+                            return Path.Combine ("/Library/Frameworks/Mono.framework/Versions/Current/lib/mono", "xbuild-frameworks");
+                        else
+                            return Path.Combine ("/usr/lib/mono", "xbuild-frameworks");
+                    }
                 }
             }
 
